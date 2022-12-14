@@ -1,0 +1,29 @@
+Các thư viện được cài đặt:
+1. underthesea==1.4.0, pyvi==0.1.1, nltk==3.7
+Đây là thư viện xử lý ngôn ngữ tự nhiên:
+	+ Sử dụng word_tokenize của underthesea và pivy nhằm phân đoạn các từ trong câu
+	+ Sử dụng stopwords của thư viện nltk nhằm loại bỏ từ dừng trong câu
+	+ Sử dụng SnowballStemmer của thư viện nltk để loại bỏ các phụ tố từ và trả lại từ gốc
+
+2. emoji==2.2.0
+Sử dụng thư viện emoji trong tiền xử lý dữ liệu nhằm loại bỏ các emoji trong nhận xét của người dùng.
+
+3. regex==2022.6.2
+Sử dụng thư viện regex nhằm chuẩn hóa dữ liệu, loại bỏ các khoảng trắng thừa, các ký tự không cần thiết.
+
+4. pandas==1.3.5
+Thư viện panda được sử dụng để đọc, sửa và ghi flie .csv
+
+5. numpy==1.21.6
+Được sử dụng nhằm kiểm tra kích thước mảng huấn luyện 
+
+
+6. keras==2.9.0, tensorflow==2.9.2
+- Sử dụng 2 thư viện để xây dựng mô hình Sequential với 6 layer:
+	+ Embedding: Dữ liệu đầu vào là nhận xét của người dùng dưới dạng text sẽ được chuyển thành dữ liệu số thực dưới dạng một không gian vector số. Mô hình sẽ huấn luyện dựa trên dữ liệu này.
+	+ LSTM layer
+	+ Dropout layer: Được thêm vào trước và sau LSTM layer nhằm tránh overfitting.
+	+ BatchNormalization layer: Chuẩn hóa dữ liệu ở các layer theo batch về phân phối chuẩn để quá trình gradient descent hội tụ nhanh hơn.
+	+ Dense: toàn bộ các unit của layer trước đó được nối với toàn bộ các unit của layer hiện tại, chỉ có 1 unit ở layer này và hàm activation được sử dụng là hàm sigmoid.
+- Phương pháp cập nhật nghiệm được sử dụng là SGD với learning rate là 0.01, hàm loss được tính bằng binary_crossentropy.
+- Mô hình được huấn luyện bằng phương thức .fit() với 10 epoch và kích thước của một mini-batch là 30.
